@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente de Ajedrez</title>
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para resaltado de casillas */
+        .highlight-green {
+            box-shadow: inset 0 0 3px 3px #00ff00;
+        }
+        .highlight-yellow {
+            box-shadow: inset 0 0 3px 3px #ffff00;
+        }
+        .highlight-red {
+            box-shadow: inset 0 0 3px 3px #ff0000;
+        }
+        .highlight-square {
+            background: rgba(0, 255, 0, 0.4);
+        }
+        
+        /* Layout de 3 columnas */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .chat-column {
+            grid-column: 1;
+        }
+        
+        .board-column {
+            grid-column: 2;
+        }
+        
+        .history-column {
+            grid-column: 3;
+        }
+    </style>
+</head>
+<body>
+    <!-- Color selection screen -->
+    <div id="color-selection" class="color-selection">
+        <h2>Elige tu color</h2>
+        <div class="color-buttons">
+            <button id="white-button" class="color-button white">Blancas</button>
+            <button id="black-button" class="color-button black">Negras</button>
+        </div>
+    </div>
+
+    <!-- Main game container -->
+    <div id="main-container" class="container hidden">
+        <!-- Chat column -->
+        <div class="chat-column">
+            <div class="chat-header">
+                <h2>Análisis de Ajedrez</h2>
+            </div>
+            <div id="chat-log" class="chat-log custom-scrollbar"></div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Pregunta sobre la posición...">
+                <button id="send-button">Analizar</button>
+            </div>
+        </div>
+        
+
+        <!-- Board column -->
+        <div class="board-column">
+            <div class="board-header">
+                <h2>
+                    <div class="turn-indicator white-turn">
+                        <span class="piece-emoji">♔</span>
+                        <span class="turn-text">Turno de las Blancas</span>
+                    </div>
+                </h2>
+            </div>
+            <div id="chess-board"></div>
+        </div>
+
+        <!-- History column -->
+        <div class="history-column">
+            <div class="history-header">
+                <h2>Historial de Jugadas</h2>
+            </div>
+            <div id="move-history" class="move-history"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
